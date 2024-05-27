@@ -16,7 +16,7 @@ void    PhoneBook::search_contact(void)
         std::cout << "Phonebook is empty" << std::endl;
         return;
     }
-    std::cout << "     index|first name| last name|  nickname" << std::endl;
+    std::cout << "index     |first name|last name |nickname  " << std::endl;
     for (int i = 0; i < this->_index; i++)
     {
         std::cout << std::setw(10) << i + 1 << "|";
@@ -54,19 +54,54 @@ void    PhoneBook::add_contact(void)
     std::string phone_number;
     std::string darkest_secret;
     std::cout << "Enter first name: ";
-    std::cin >> first_name;
+    while (first_name.empty())
+    {
+        std::getline(std::cin, first_name);
+        if (!first_name.empty())
+            break;
+        std::cout << "First name cannot be empty" << std::endl;
+        std::cout << "Enter first name: ";
+    }
     contact.set_first_name(first_name);
     std::cout << "Enter last name: ";
-    std::cin >> last_name;
+    while (last_name.empty())
+    {
+        std::getline(std::cin, last_name);
+        if (!last_name.empty())
+            break;
+        std::cout << "Last name cannot be empty" << std::endl;
+        std::cout << "Enter last name: ";
+    }
     contact.set_last_name(last_name);
     std::cout << "Enter nickname: ";
-    std::cin >> nickname;
+    while (nickname.empty())
+    {
+        std::getline(std::cin, nickname);
+        if (!nickname.empty())
+            break;
+        std::cout << "Nickname cannot be empty" << std::endl;
+        std::cout << "Enter nickname: ";
+    }
     contact.set_nickname(nickname);
     std::cout << "Enter phone number: ";
-    std::cin >> phone_number;
+    while (phone_number.empty())
+    {
+        std::getline(std::cin, phone_number);
+        if (!phone_number.empty())
+            break;
+        std::cout << "Phone number cannot be empty" << std::endl;
+        std::cout << "Enter phone number: ";
+    }
     contact.set_phone_number(phone_number);
     std::cout << "Enter darkest secret: ";
-    std::cin >> darkest_secret;
+    while (darkest_secret.empty())
+    {
+        std::getline(std::cin, darkest_secret);
+        if (!darkest_secret.empty())
+            break;
+        std::cout << "Darkest secret cannot be empty" << std::endl;
+        std::cout << "Enter darkest secret: ";
+    }
     contact.set_darkest_secret(darkest_secret);
     this->_contacts[this->_index] = contact;
     this->_index++;
