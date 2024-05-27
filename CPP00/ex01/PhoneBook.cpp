@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/27 10:03:14 by moetienn          #+#    #+#             */
+/*   Updated: 2024/05/27 11:54:38 by moetienn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void)
@@ -9,28 +21,82 @@ PhoneBook::~PhoneBook(void)
 {
 }
 
+bool    isValidIndex(std::string index, int size)
+{
+    int int_index = std::atoi(index.c_str());
+
+    if (index.empty())
+    {
+        std::cout << "Index cannot be empty" << std::endl;
+        std::cout << "Enter index: ";
+        return (false);
+    }
+    if (index.length() != 1 || index[0] < '1' || index[0] > '8')
+    {
+        std::cout << "Invalid index" << std::endl;
+        std::cout << "Enter index: ";
+        return (false);
+    }
+    if (int_index > size)
+    {
+        std::cout << "Contact is empty" << std::endl;
+        std::cout << "Enter index: ";
+        return (false);
+    }
+    return (true);
+}
+
+std::string formatOutput(std::string str)
+{
+    if (str.length() > 10)
+    {
+        str.resize(9);
+        str += ".";
+    }
+    return (str);
+}
+
+bool isValidPhoneNumber(std::string phone_number)
+{
+    if (phone_number.empty())
+    {
+        std::cout << "Phone number cannot be empty" << std::endl;
+        std::cout << "Enter phone number: ";
+        return (false);
+    }
+    for (int i = 0; i < (int)phone_number.length(); i++)
+    {
+        if (!std::isdigit(phone_number[i]))
+        {
+            std::cout << "Invalid phone number" << std::endl;
+            std::cout << "Enter phone number: ";
+            return (false);
+        }
+    }
+    return (true);
+}
+
 void    PhoneBook::search_contact(void)
 {
     if (this->_index == 0)
     {
         std::cout << "Phonebook is empty" << std::endl;
-        return;
+        return ;
     }
-    std::cout << "index     |first name|last name |nickname  " << std::endl;
+    std::cout << "     index|first name| last name|  nickname" << std::endl;
     for (int i = 0; i < this->_index; i++)
     {
         std::cout << std::setw(10) << i + 1 << "|";
-        std::cout << std::setw(10) << this->_contacts[i].get_first_name() << "|";
-        std::cout << std::setw(10) << this->_contacts[i].get_last_name() << "|";
-        std::cout << std::setw(10) << this->_contacts[i].get_nickname() << std::endl;
+        std::cout << std::setw(10) << formatOutput(this->_contacts[i].get_first_name()) << "|";
+        std::cout << std::setw(10) << formatOutput(this->_contacts[i].get_last_name()) << "|";
+        std::cout << std::setw(10) << formatOutput(this->_contacts[i].get_nickname()) << std::endl;
     }
     std::string index;
     std::cout << "Enter index: ";
-    std::cin >> index;
-    if (index.length() != 1 || index[0] < '1' || index[0] > '8')
+    std::getline(std::cin, index);
+    while (isValidIndex(index, this->_index) == false)
     {
-        std::cout << "Invalid index" << std::endl;
-        return;
+        std::getline(std::cin, index);
     }
     int i = index[0] - '1';
     std::cout << "First name: " << this->_contacts[i].get_first_name() << std::endl;
@@ -38,15 +104,10 @@ void    PhoneBook::search_contact(void)
     std::cout << "Nickname: " << this->_contacts[i].get_nickname() << std::endl;
     std::cout << "Phone number: " << this->_contacts[i].get_phone_number() << std::endl;
     std::cout << "Darkest secret: " << this->_contacts[i].get_darkest_secret() << std::endl;
-
 }
 
 void    PhoneBook::add_contact(void)
 {
-    if (this->_index == 8)
-    {
-        this->_index = 0;
-    }
     Contact contact;
     std::string first_name;
     std::string last_name;
@@ -84,13 +145,10 @@ void    PhoneBook::add_contact(void)
     }
     contact.set_nickname(nickname);
     std::cout << "Enter phone number: ";
-    while (phone_number.empty())
+    std::getline(std::cin, phone_number);
+    while (isValidPhoneNumber(phone_number) == false)
     {
         std::getline(std::cin, phone_number);
-        if (!phone_number.empty())
-            break;
-        std::cout << "Phone number cannot be empty" << std::endl;
-        std::cout << "Enter phone number: ";
     }
     contact.set_phone_number(phone_number);
     std::cout << "Enter darkest secret: ";
@@ -103,6 +161,17 @@ void    PhoneBook::add_contact(void)
         std::cout << "Enter darkest secret: ";
     }
     contact.set_darkest_secret(darkest_secret);
-    this->_contacts[this->_index] = contact;
-    this->_index++;
+    if (this->_index < 8)
+    {
+        this->_contacts[this->_index] = contact;
+        this->_index++;
+    }
+    else
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            this->_contacts[i] = this->_contacts[i + 1];
+        }
+        this->_contacts[7] = contact;
+    }
 }
