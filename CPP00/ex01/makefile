@@ -6,7 +6,7 @@ OBJ= $(SRC:.cpp=.o)
 HEADERS= PhoneBook.hpp \
 	Contact.hpp
 CC= c++
-CPPFLAGS= -Wall -Wextra -Werror -std=c++98 -pedantic
+CPPFLAGS= -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 

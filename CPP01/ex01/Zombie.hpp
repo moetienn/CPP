@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 08:38:42 by moetienn          #+#    #+#             */
-/*   Updated: 2024/05/28 09:05:45 by moetienn         ###   ########.fr       */
+/*   Created: 2024/05/28 10:16:52 by moetienn          #+#    #+#             */
+/*   Updated: 2024/05/28 11:08:05 by moetienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef ZOMBIEHORDE_HPP
+#define ZOMBIEHORDE_HPP
 
-void    Zombie::announce(void)
-{
-    std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-}
+#include <iostream>
 
-Zombie::Zombie(std::string name)
+class Zombie
 {
-    this->_name = name;
-}
+    private:
+        std::string _name;
+    public:
+        Zombie(void);
+        ~Zombie(void);
+        void    announce(void);
+        void    setName(std::string name); 
+} ;
 
-Zombie::~Zombie(void)
-{
-    std::cout << this->_name << " destroyed" << std::endl;
-}
+#endif

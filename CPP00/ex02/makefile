@@ -4,7 +4,7 @@ SRC= tests.cpp \
 OBJ= $(SRC:.cpp=.o)
 HEADERS= Account.hpp
 CC= c++
-CPPFLAGS= -Wall -Wextra -Werror -std=c++98 -pedantic
+CPPFLAGS= -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
