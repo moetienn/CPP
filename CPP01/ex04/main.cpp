@@ -6,7 +6,7 @@
 /*   By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:34:13 by moetienn          #+#    #+#             */
-/*   Updated: 2024/05/28 13:48:09 by moetienn         ###   ########.fr       */
+/*   Updated: 2024/06/03 08:33:44 by moetienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int main(int ac, char **av)
         return (1);
     }
     file.seekg(0, std::ios::beg);
-    std::ofstream new_file("new_file");
+    std::string new_filename = filename + ".replace";
+    std::ofstream new_file(new_filename.c_str());
     if (!new_file.is_open())
     {
         std::cout << "Error : file doesnt exist" << std::endl;
