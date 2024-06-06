@@ -6,12 +6,14 @@
 /*   By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 10:24:07 by moetienn          #+#    #+#             */
-/*   Updated: 2024/06/06 11:27:30 by moetienn         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:49:20 by moetienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef POINT_HPP
 #define POINT_HPP
+
+#include "Fixed.hpp"
 
 class Point
 {
@@ -25,8 +27,8 @@ class Point
         Point &operator=(Point const &rhs);
         ~Point(void);
 
-        float   getX(void) const;
-        float   getY(void) const;
+        Fixed   getX(void) const;
+        Fixed   getY(void) const;
         bool    bsp(Point const a, Point const b, Point const c, Point const point);
 } ;
 

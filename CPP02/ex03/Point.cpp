@@ -6,15 +6,14 @@
 /*   By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 10:23:59 by moetienn          #+#    #+#             */
-/*   Updated: 2024/06/06 11:56:53 by moetienn         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:51:41 by moetienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
-#include "Fixed.hpp"
 
 Point::Point(void) : _x(0), _y(0)
-{   
+{
 }
 
 Point::Point(float const x, float const y) : _x(x), _y(y)
@@ -35,17 +34,17 @@ Point &Point::operator=(Point const &rhs)
     return (*this);
 }
 
-float   Point::getX(void) const
+Fixed   Point::getX(void) const
 {
-    return (this->_x);
+    return (Fixed(_x));
 }
 
-float   Point::getY(void) const
+Fixed   Point::getY(void) const
 {
-    return (this->_y);
+    return (Fixed(_y));
 }
 
-float   area(Point a, Point b, Point c)
+Fixed   area(Point a, Point b, Point c)
 {
     return (Fixed((a.getX() * (b.getY() - c.getY()) + b.getX() * (c.getY() - a.getY()) + c.getX() * (a.getY() - b.getY())) / 2).toFloat());
 }
@@ -58,19 +57,16 @@ bool    Point::bsp(Point const a, Point const b, Point const c, Point const poin
         return (false);
     if (c.getX() == point.getX() && c.getY() == point.getY())
         return (false);
-    float   A = area(a, b, c);
-    float   A1 = area(point, b, c);
+    Fixed   A = area(a, b, c);
+    Fixed   A1 = area(point, b, c);
     if (A1 < 0)
-        A1 *= -1;
-    float   A2 = area(a, point, c);
+        A1 = A1 * -1;
+    Fixed   A2 = area(a, point, c);
     if (A2 < 0)
-        A2 *= -1;
-    float   A3 = area(a, b, point);
+        A2 = A2 * -1;
+    Fixed   A3 = area(a, b, point);
     if (A3 < 0)
-        A3 *= -1;
-    std::cout << "A1: " << A1 << std::endl;
-    std::cout << "A2: " << A2 << std::endl;
-    std::cout << "A3: " << A3 << std::endl;
+        A3 = A3 * -1;
     if (A1 == 0 || A2 == 0 || A3 == 0)
         return (false);
     return (A == A1 + A2 + A3);
