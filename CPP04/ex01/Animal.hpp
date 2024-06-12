@@ -6,7 +6,7 @@
 /*   By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:20:04 by moetienn          #+#    #+#             */
-/*   Updated: 2024/06/11 08:48:33 by moetienn         ###   ########.fr       */
+/*   Updated: 2024/06/12 07:59:41 by moetienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class Animal
 	public:
 		Animal(void);
 		Animal(std::string type);
+        Animal(const Animal& src);
 		virtual ~Animal(void);
 
 		virtual void    makeSound(void) const;

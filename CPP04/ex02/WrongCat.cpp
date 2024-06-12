@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 08:22:59 by moetienn          #+#    #+#             */
-/*   Updated: 2024/06/12 07:47:39 by moetienn         ###   ########.fr       */
+/*   Created: 2024/06/11 08:51:24 by moetienn          #+#    #+#             */
+/*   Updated: 2024/06/11 08:59:37 by moetienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#include "WrongCat.hpp"
 
-# include "Animal.hpp"
-# include "Brain.hpp"
-
-class Cat : public Animal
+WrongCat::WrongCat(void) : WrongAnimal("WrongCat")
 {
-    private:
-        Brain*  _brain;
-    public:
-        Cat(void);
-        Cat(const Cat& src);
-        virtual ~Cat(void);
-        
-        void    makeSound(void) const;
-        Cat&    operator=(const Cat& rhs);
-}   ;
+    std::cout << "WrongCat default constructor called" << std::endl;
+}
 
-#endif
+WrongCat::~WrongCat(void)
+{
+    std::cout << "WrongCat destructor called" << std::endl;
+}

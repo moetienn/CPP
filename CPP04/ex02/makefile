@@ -6,11 +6,11 @@
 #    By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/06 13:01:11 by moetienn          #+#    #+#              #
-#    Updated: 2024/06/12 07:22:21 by moetienn         ###   ########.fr        #
+#    Updated: 2024/06/12 08:28:44 by moetienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= brain
+NAME= Instanciation
 SRC= main.cpp \
 	Dog.cpp \
 	Cat.cpp \

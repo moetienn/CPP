@@ -6,7 +6,7 @@
 /*   By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:24:29 by moetienn          #+#    #+#             */
-/*   Updated: 2024/06/11 09:03:15 by moetienn         ###   ########.fr       */
+/*   Updated: 2024/06/12 08:22:05 by moetienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,14 @@
 
 int main()
 {
-    const   Animal* meta = new Animal();
-    const   Animal* j = new Dog();
-    const   Animal* i = new Cat();
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound();
-    j->makeSound();
-    meta->makeSound();
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
     delete j;
     delete i;
-    delete meta;
-
-    const   WrongAnimal* meta2 = new WrongAnimal();
-    const   WrongAnimal* j2 = new WrongCat();
-    std::cout << j2->getType() << " " << std::endl;
-    j2->makeSound();
-    meta2->makeSound();
-    delete j2;
-    delete meta2;
+    const Animal* k[6] = {new Dog(), new Cat(), new Dog(), new Cat(), new Dog(), new Cat()};
+    for (int i = 0; i < 6; i++)
+    {
+        delete k[i];
+    }
     return (0);
 }

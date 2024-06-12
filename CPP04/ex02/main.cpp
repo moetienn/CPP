@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 08:22:59 by moetienn          #+#    #+#             */
-/*   Updated: 2024/06/12 07:47:39 by moetienn         ###   ########.fr       */
+/*   Created: 2024/06/11 08:24:29 by moetienn          #+#    #+#             */
+/*   Updated: 2024/06/12 08:28:32 by moetienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#include "Dog.hpp"
+#include "Cat.hpp"
+#include "WrongCat.hpp"
 
-# include "Animal.hpp"
-# include "Brain.hpp"
-
-class Cat : public Animal
+int main()
 {
-    private:
-        Brain*  _brain;
-    public:
-        Cat(void);
-        Cat(const Cat& src);
-        virtual ~Cat(void);
-        
-        void    makeSound(void) const;
-        Cat&    operator=(const Cat& rhs);
-}   ;
+    // const Animal* animal = new Animal(); // Will not compile
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
 
-#endif
+    std::cout << j->getType() << " " << std::endl;
+    std::cout << i->getType() << " " << std::endl;
+
+    i->makeSound();
+    j->makeSound();
+
+    delete j;
+    delete i;
+    return (0);
+}
