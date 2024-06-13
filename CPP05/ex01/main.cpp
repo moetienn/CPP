@@ -6,76 +6,59 @@
 /*   By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 08:48:52 by moetienn          #+#    #+#             */
-/*   Updated: 2024/06/12 10:25:58 by moetienn         ###   ########.fr       */
+/*   Updated: 2024/06/13 11:00:07 by moetienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main()
-{	
+{
 	try
 	{
-        Bureaucrat b1("b1", 151);
+        Bureaucrat  b1("b1", 29);
         std::cout << b1 << std::endl;
+        Form    f1;
+        try
+        {
+            f1 = Form("f1", 190, 120);
+            std::cout << f1 << std::endl;
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        try
+        {
+            f1.beSigned(b1);
+            b1.signForm(f1.getSigned(), f1.getName());
+            std::cout << f1 << std::endl;
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
 
+    std::cout << "-----------------------------------------" << std::endl;
+
     try
     {
-        Bureaucrat b2("b2", 0);
+        Bureaucrat  b2("b2", 140);
         std::cout << b2 << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    
-    try
-    {
-        Bureaucrat b3("b3", 140);
-        std::cout << b3 << std::endl;
-        b3.incrementGrade();
-        std::cout << b3 << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-
-    try
-    {
-        Bureaucrat b4("b4", 10);
-        std::cout << b4 << std::endl;
-        b4.decrementGrade();
-        std::cout << b4 << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-
-    try
-    {
-        Bureaucrat b5("b5", 1);
-        std::cout << b5 << std::endl;
-        b5.decrementGrade();
-        std::cout << b5 << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-
-    try
-    {
-        Bureaucrat b6("b6", 150);
-        std::cout << b6 << std::endl;
-        b6.incrementGrade();
-        std::cout << b6 << std::endl;
+        Form    f2("f2", 139, 120);
+        std::cout << f2 << std::endl;
+        f2.beSigned(b2);
+        b2.signForm(f2.getSigned(), f2.getName());
+        b2.incrementGrade();
+        f2.beSigned(b2);
+        b2.signForm(f2.getSigned(), f2.getName());
+        std::cout << f2 << std::endl;
     }
     catch(const std::exception& e)
     {

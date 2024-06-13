@@ -6,17 +6,23 @@
 #    By: moetienn <moetienn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 08:48:55 by moetienn          #+#    #+#              #
-#    Updated: 2024/06/12 10:59:39 by moetienn         ###   ########.fr        #
+#    Updated: 2024/06/13 08:46:41 by moetienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME= Bureaucrat
 SRC= Bureaucrat.cpp \
 	 main.cpp \
-	 Form.cpp
+	 AForm.cpp \
+	 ShrubberyCreationForm.cpp \
+	#  PresidentialPardonForm.cpp \
+	 RobotomyRequestForm.cpp
 OBJ= $(SRC:.cpp=.o)
 HEADERS= Bureaucrat.hpp \
-		 Form.hpp
+		 AForm.hpp \
+		 ShrubberyCreationForm.hpp \
+		#  PresidentialPardonForm.hpp \
+		 RobotomyRequestForm.hpp
 CC= c++
 CPPFLAGS= -Wall -Wextra -Werror -std=c++98
 
